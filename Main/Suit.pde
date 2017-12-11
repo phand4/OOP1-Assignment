@@ -33,9 +33,9 @@ class suit{
     strokeWeight(3);
     rectMode(CENTER);
     rect(cx, cy+40, 200, 200);
-    float life =3 ;
+    //float life =3 ;
     
-      
+      fill(c2); 
       ellipse(cx, cy, 25, 25); //head
       ellipse(cx, cy+40, 25, 45); //torso
       ellipse(cx-23, cy+40, 15, 45); //larm
