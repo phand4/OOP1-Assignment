@@ -17,13 +17,25 @@ void setup()
   imgH = location.height;
   minim = new Minim(this);
   wind = minim.loadFile("Wind.mp3", 5048);
+  minim2 = new Minim(this);
+  river = minim2.loadFile("river.mp3", 2048);
+  minim3 = new Minim(this);
+  dog = minim3.loadFile("Dog.mp3", 2048);
+  minim4 = new Minim(this);
+  move = minim4.loadFile("move.mp3", 5048);
 }
 
 void draw()
 {
+  river.play();
   wind.play();
+  dog.play();
+
+
+  
   strokeWeight(10);
-  cursor(target, 0, 0);
+  //cursor(target, 0, 0);
+  cursor(HAND);
   background(255);
 
   Suit.render();
@@ -44,7 +56,7 @@ void mousePressed(){
 
 void mouseDragged(){
  panToX = mouseX;
- panToY = mouseY;
+ panToY = mouseY; 
  int xShift = panToX - panFromX;
  int yShift = panToY - panFromY;
  imgX = imgX + xShift;
@@ -62,8 +74,11 @@ float hd, td, lad, rad, lld, rld;
 float scaler = 1;
 PImage target;
 PImage location; 
-AudioPlayer wind;
+AudioPlayer wind, river, dog, move;
 Minim minim;
+Minim minim2;
+Minim minim3;
+Minim minim4;
 int imgX = 0, imgY = 0, imgW = 0, imgH = 0;
 int panFromX =0, panFromY =0;
 int panToX = 0, panToY = 0;
