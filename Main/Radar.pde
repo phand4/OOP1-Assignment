@@ -26,9 +26,11 @@ class radar
  
  void render()
  {
-   stroke(c);
    strokeWeight(10);
-   arc(cx, cy, (radius * 2)+101, (radius * 2)+101, -HALF_PI, HALF_PI);
+   stroke(72, 91, 108, 180);
+   arc(cx-10, cy-5, (radius * 2)+91, (radius * 2)+91, -HALF_PI, HALF_PI);
+   stroke(c);   
+   arc(cx-10, cy-5, (radius * 2)+101, (radius * 2)+101, -HALF_PI, HALF_PI);
    strokeWeight(5);
    stroke(95, 123, 147, 100);
    ellipse(cx, cy, (radius * 2)+10, (radius * 2)+10);
