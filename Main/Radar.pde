@@ -42,6 +42,7 @@ class radar
    ellipse(cx, cy, radius * 2, radius * 2);
 
    int trailLength = 10;
+     if(frameCount<30)fill(255,0,0);ellipse((width / 8)+4,(height/2),10,10);
    //float blueIntensity = 255 / trailLength;
    for(int i = 0; i < trailLength; i++)
    {
