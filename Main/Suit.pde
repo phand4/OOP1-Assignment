@@ -18,18 +18,25 @@ class suit{
   void render(){
     stroke(c);
     strokeWeight(10);
-    line(width/8, height/8, cx, height/8);
-    line(width/8, height/8, width/8, height*0.7);
-    line(cx, height/8, width*0.8, height*0.7);
-    curve(cx, cy, cx, cy, cx, cy, cx, cy);
+    line(width*0.2, height/8, width*0.73, height/8);
+    line(width*0.2, height/8,width/8, height/4);
+    line(width/8, height/4, width/8, height*0.7);
+    line(cx, height/4, width*0.8, height*0.7);
+    line(width*0.73, height/8,cx, height/4);
+    
     strokeWeight(3);
-    rect(cx -100, cy-50, 200, 200);
-    ellipse(cx, cy, 25, 25); //head
-    ellipse(cx, cy+40, 25, 45); //torso
-    ellipse(cx-23, cy+40, 15, 45); //larm
-    ellipse(cx+23, cy+40, 15, 45); //Rarm
-    ellipse(cx-10, cy+80, 15, 45); //lleg
-    ellipse(cx+10, cy+80, 15, 45); //Rleg
+    rectMode(CENTER);
+    rect(cx, cy+40, 200, 200);
+    float life =3 ;
+    if(life == 3){
+      ellipse.setFill(255);
+      ellipse(cx, cy, 25, 25); //head
+      ellipse(cx, cy+40, 25, 45); //torso
+      ellipse(cx-23, cy+40, 15, 45); //larm
+      ellipse(cx+23, cy+40, 15, 45); //Rarm
+      ellipse(cx-10, cy+80, 15, 45); //lleg
+      ellipse(cx+10, cy+80, 15, 45); //Rleg
+    }
   }
   
   void update()
@@ -37,4 +44,6 @@ class suit{
     
     
   }
+  
+  PShape head;
 }
