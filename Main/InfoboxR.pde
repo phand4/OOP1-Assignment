@@ -31,17 +31,20 @@ class infoboxR
           text("Identity: River", cx-100, cy+30);
           if(stand){
              text("Status: Still wet", cx-100, cy+60);
-             text("Your legs : Water damaged", cx-100, cy+ 90);
+             text("Your legs: Water damaged", cx-160, cy+ 90);
+             fill(color(237, 28, 36, 180));
+             ellipse((width * 0.8)-10, (height * 0.8)+80, 15, 45); //lleg
+             ellipse((width * 0.8)+10, (height * 0.8)+80, 15, 45); //Rleg
           } else {
              text("Status: Wet", cx-100, cy+60);
              text("Texture : Wet", cx-100, cy+ 90);
              text("Stand in river?", cx-100, cy+120);
-              riverbtnyes = new Button(cx-100, cy+130, 15, 15, color(181, 230, 29, 180));
-              riverbtnno = new Button(cx-20, cy+130, 15, 15, color(237, 28, 36, 180)); 
+              riverbtnyes = new Button(cx-100, cy+140, 15, 15, color(181, 230, 29, 180));
+              riverbtnno = new Button(cx-20, cy+140, 15, 15, color(237, 28, 36, 180)); 
               riverbtnyes.buttonDisplay();      
               riverbtnno.buttonDisplay(); 
               if(riverbtnyes.hasClicked()){
-                 stand = true;   
+                 stand = true;
                }
           }
       }

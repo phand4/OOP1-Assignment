@@ -1,12 +1,13 @@
 class suit{
   float cx, cy;
   color c, c2;
-  
-  suit(float cx, float cy, color c, color c2){
+  Boolean stand;
+  suit(float cx, float cy, color c, color c2, Boolean stand){
     this.cx = cx;
     this.cy = cy;
     this.c = c;
     this.c2 = c2;
+    this.stand = stand;
 
   }
   void render(){
@@ -39,10 +40,13 @@ class suit{
       ellipse(cx-23, cy+40, 15, 45); //larm
 
       ellipse(cx+23, cy+40, 15, 45); //Rarm
+   
+   if(stand == true){
+     fill(color(237, 28, 36, 180));
+   }
+   ellipse(cx-10, cy+80, 15, 45); //lleg
 
-      ellipse(cx-10, cy+80, 15, 45); //lleg
-
-      ellipse(cx+10, cy+80, 15, 45); //Rleg
+   ellipse(cx+10, cy+80, 15, 45); //Rleg
     
   }
   
@@ -52,5 +56,5 @@ class suit{
     
   }
   
-  PShape head;
+
 }

@@ -17,10 +17,10 @@ void setup()
   
   //objects
   Radar = new radar(width / 8, height * 0.85 , 100, 0.5, color(95, 123, 147, 180));
-  Suit = new suit(width * 0.8, height * 0.8, color(95, 123, 147, 180), color(72, 91, 108, 180));
+  Suit = new suit(width * 0.8, height * 0.8, color(95, 123, 147, 180), color(72, 91, 108, 180),stand);
   doginfo = new infoboxD("Dog", width/2, height/2, color(95, 123, 147));
-  riverinfo = new infoboxR("River", width/6, height/2, color(95, 123, 147));
-  stickinfo = new infoboxS("Stick", width*0.8, height/2, color(95, 123, 147));
+  riverinfo = new infoboxR("River", width/2, height/2, color(95, 123, 147));
+  stickinfo = new infoboxS("Stick", width/2, height/2, color(95, 123, 147));
    
   //buttons around the suit display
   btnhd = new Button((width*0.8)-80, (height*0.8)-50, 15, 15, color(95, 123, 147, 180));
@@ -33,7 +33,7 @@ void setup()
   //infobox buttons
   dogbutton = new Button((width/5), (height/2), 200, 200, color(255,255,255,255));
   riverbutton = new Button((width/2), (height/2), 150, 100, color(255,255,255,255));
-  stickbutton = new Button((width*0.8), (height/2), 100, 50, color(255,255,255,255));
+  stickbutton = new Button((width*0.7), (height/2), 100, 70, color(255,255,255,255));
   close = new Button((width/2)+220, (height/2)-200, 20, 20, color(200,100,200,255));
   
   //Music
@@ -76,11 +76,11 @@ void draw()
       }
   }
   
-  if(riverbool){
+  if(riverbool && !dogbool && !stickbool){
       riverinfo.render();
       close.buttonDisplay();    
   }
-  if(!riverbool && !dogbool){
+  if(!riverbool && !dogbool && !stickbool){
       if(testcounter >= 8){
         riverbutton.buttonDisplay();
       }
@@ -90,7 +90,7 @@ void draw()
       stickinfo.render();
       close.buttonDisplay();    
   }
-  if(!stickbool && !dogbool){
+  if(!stickbool && !dogbool && !riverbool){
       if(testcounter >= 8){
         stickbutton.buttonDisplay();
       }
@@ -135,7 +135,10 @@ void mouseClicked(){
  if(close.hasClicked()){
     dogbool = false; 
     stickbool = false;
-    riverbool = false;
+    if(riverbool){
+        riverbool = false;
+        stand = true;
+    }
  }
  if(dogbutton.hasClicked()){
      dogbool = true;   
@@ -143,8 +146,8 @@ void mouseClicked(){
  if(stickbutton.hasClicked()){
      stickbool = true;   
  }
- if(dogbutton.hasClicked()){
-     stickbool = true;   
+ if(riverbutton.hasClicked()){
+     riverbool = true;   
  }
  if(btnhd.hasClicked()){
    println("Button 1 clicked");
@@ -186,6 +189,7 @@ PImage target;
 Boolean dogbool = false;
 Boolean riverbool = false;
 Boolean stickbool = false;
+Boolean stand = false;
 PImage location; 
 AudioPlayer wind, river, dog, move;
 Minim minim;
