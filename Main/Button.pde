@@ -15,12 +15,13 @@ class Button{
   void buttonDisplay()
   {
     if(buttonOn)
-      fill(72, 91, 200,80);
-    else
+      //fill(72, 91, 200,80);
+   // else
       noFill();
     if(isOver(mouseX,mouseY)){
       stroke(0);
       strokeWeight(2);
+      cursor(HAND);
     } else {
      noStroke(); 
     }

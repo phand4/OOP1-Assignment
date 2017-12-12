@@ -8,21 +8,32 @@ import ddf.minim.ugens.*;
 
 void setup()
 {
+  //display setup
   fullScreen();
-  location = loadImage("location.png");
+  location = loadImage("location.jpg");
   target = loadImage("target.png");
-  Radar = new radar(width / 8, height * 0.85 , 100, 0.5, color(95, 123, 147, 180));
-  Suit = new suit(width * 0.8, height * 0.8, color(95, 123, 147, 180), color(72, 91, 108, 180));
-  doginfo = new infobox("Dog", width/ 6, height/6, color(95, 123, 147, 180));
   imgW = location.width;
   imgH = location.height;
+  
+  //objects
+  Radar = new radar(width / 8, height * 0.85 , 100, 0.5, color(95, 123, 147, 180));
+  Suit = new suit(width * 0.8, height * 0.8, color(95, 123, 147, 180), color(72, 91, 108, 180));
+  doginfo = new infoboxD("Dog", width/2, height/2, color(95, 123, 147));
+  riverinfo = new infoboxR("River", width/6, height/2, color(95, 123, 147, 180));
+  stickinfo = new infoboxS("Stick", width/6, height/2, color(95, 123, 147, 180));
+   
+  //buttons around the suit display
   btnhd = new Button((width*0.8)-80, (height*0.8)-50, 15, 15, color(95, 123, 147, 180));
   btnc = new Button((width*0.8)-80, (height*0.8), 15, 15, color(95, 123, 147, 180));
   btnra = new Button((width*0.8)-80, (height*0.8)+70, 15, 15, color(95, 123, 147, 180));
   btnla = new Button((width*0.8)+80, (height*0.8)-50, 15, 15, color(95, 123, 147, 180));
   btnrl = new Button((width*0.8)+80, (height*0.8), 15, 15, color(95, 123, 147, 180));
   btnll = new Button((width*0.8)+80, (height*0.8)+70, 15, 15, color(95, 123, 147, 180));
-  dogbutton = new Button((width/2), (height/2), 200, 200, color(255,255,255,255));
+  dogbutton = new Button((width/5), (height/2), 200, 200, color(255,255,255,255));
+  riverbutton = new Button((width/2), (height/2), 200, 200, color(255,255,255,255));
+  stickbutton = new Button((width*0.7), (height/2), 200, 200, color(255,255,255,255));
+  close = new Button((width/6), (height/3), 20, 20, color(200,100,200,255));
+  
   //Music
   minim = new Minim(this);
   wind = minim.loadFile("Wind.mp3", 5048);
@@ -32,12 +43,11 @@ void setup()
   dog = minim3.loadFile("Dog.mp3", 2048);
   minim4 = new Minim(this);
   move = minim4.loadFile("move.mp3", 5048);
-  
-
 }
 
 void draw()
 {
+  //audio playing
   river.play();
   wind.play();
   dog.play();
@@ -51,13 +61,37 @@ void draw()
   Suit.render();
   Radar.render();
   Radar.update();
+  
   if(dogbool){
       dog.play();
-      doginfo.render(); 
+      doginfo.render();
+      close.buttonDisplay();    
   }
-  if(testcounter >= 5){
-    dogbutton.buttonDisplay();
+  if(!dogbool){
+      if(testcounter >= 3){
+        dogbutton.buttonDisplay();
+      }
   }
+  
+  /*if(riverbool){
+      riverinfo.render();
+      close.buttonDisplay();    
+  }
+  if(!riverbool){
+      if(testcounter >= 5 && testcounter<=9){
+        riverbutton.buttonDisplay();
+      }
+  }
+  
+  if(stickbool){
+      stickinfo.render();
+      close.buttonDisplay();    
+  }
+  if(!stickbool){
+      if(testcounter >= 9 && testcounter<= 12){
+        stickbutton.buttonDisplay();
+      }
+  }*/
   scale(scaler);
   btnhd.buttonDisplay();
   btnc.buttonDisplay(); 
@@ -70,7 +104,7 @@ void draw()
 
   textSize(30);   
 
-  tint(95, 123, 147, 190); 
+  tint(95, 123, 147,200); 
 }
 
 void mousePressed(){
@@ -95,8 +129,19 @@ void mouseDragged(){
 }
 
 void mouseClicked(){
+ if(close.hasClicked()){
+    dogbool = false; 
+    stickbool = false;
+    riverbool = false;
+ }
  if(dogbutton.hasClicked()){
      dogbool = true;   
+ }
+ if(stickbutton.hasClicked()){
+     stickbool = true;   
+ }
+ if(dogbutton.hasClicked()){
+     stickbool = true;   
  }
  if(btnhd.hasClicked()){
    println("Button 1 clicked");
@@ -124,7 +169,9 @@ void mouseClicked(){
 }
 radar Radar;
 suit Suit;
-infobox doginfo;
+infoboxD doginfo;
+infoboxS stickinfo;
+infoboxR riverinfo;
 int testcounter = 1;
 int counter = 1;
 color gone = color(255,255,255,180);
@@ -134,6 +181,8 @@ color injured = color(237, 28, 36, 180);
 float scaler = 1;
 PImage target;
 Boolean dogbool = false;
+Boolean riverbool = false;
+Boolean stickbool = false;
 PImage location; 
 AudioPlayer wind, river, dog, move;
 Minim minim;
@@ -149,4 +198,5 @@ Button btnra;
 Button btnla;
 Button btnrl;
 Button btnll;
-Button dogbutton;
+Button dogbutton, riverbutton, stickbutton;
+Button close;
