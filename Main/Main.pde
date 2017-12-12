@@ -19,8 +19,8 @@ void setup()
   Radar = new radar(width / 8, height * 0.85 , 100, 0.5, color(95, 123, 147, 180));
   Suit = new suit(width * 0.8, height * 0.8, color(95, 123, 147, 180), color(72, 91, 108, 180));
   doginfo = new infoboxD("Dog", width/2, height/2, color(95, 123, 147));
-  riverinfo = new infoboxR("River", width/6, height/2, color(95, 123, 147, 180));
-  stickinfo = new infoboxS("Stick", width/6, height/2, color(95, 123, 147, 180));
+  riverinfo = new infoboxR("River", width/6, height/2, color(95, 123, 147));
+  stickinfo = new infoboxS("Stick", width*0.8, height/2, color(95, 123, 147));
    
   //buttons around the suit display
   btnhd = new Button((width*0.8)-80, (height*0.8)-50, 15, 15, color(95, 123, 147, 180));
@@ -29,10 +29,12 @@ void setup()
   btnla = new Button((width*0.8)+80, (height*0.8)-50, 15, 15, color(95, 123, 147, 180));
   btnrl = new Button((width*0.8)+80, (height*0.8), 15, 15, color(95, 123, 147, 180));
   btnll = new Button((width*0.8)+80, (height*0.8)+70, 15, 15, color(95, 123, 147, 180));
+  
+  //infobox buttons
   dogbutton = new Button((width/5), (height/2), 200, 200, color(255,255,255,255));
-  riverbutton = new Button((width/2), (height/2), 200, 200, color(255,255,255,255));
-  stickbutton = new Button((width*0.7), (height/2), 200, 200, color(255,255,255,255));
-  close = new Button((width/6), (height/3), 20, 20, color(200,100,200,255));
+  riverbutton = new Button((width/2), (height/2), 150, 100, color(255,255,255,255));
+  stickbutton = new Button((width*0.8), (height/2), 100, 50, color(255,255,255,255));
+  close = new Button((width/2)+220, (height/2)-200, 20, 20, color(200,100,200,255));
   
   //Music
   minim = new Minim(this);
@@ -47,6 +49,7 @@ void setup()
 
 void draw()
 {
+  tint(95, 123, 147,200); 
   //audio playing
   river.play();
   wind.play();
@@ -73,25 +76,25 @@ void draw()
       }
   }
   
-  /*if(riverbool){
+  if(riverbool){
       riverinfo.render();
       close.buttonDisplay();    
   }
-  if(!riverbool){
-      if(testcounter >= 5 && testcounter<=9){
+  if(!riverbool && !dogbool){
+      if(testcounter >= 8){
         riverbutton.buttonDisplay();
       }
   }
   
-  if(stickbool){
+  if(stickbool && !dogbool){
       stickinfo.render();
       close.buttonDisplay();    
   }
-  if(!stickbool){
-      if(testcounter >= 9 && testcounter<= 12){
+  if(!stickbool && !dogbool){
+      if(testcounter >= 8){
         stickbutton.buttonDisplay();
       }
-  }*/
+  }
   scale(scaler);
   btnhd.buttonDisplay();
   btnc.buttonDisplay(); 
@@ -104,7 +107,7 @@ void draw()
 
   textSize(30);   
 
-  tint(95, 123, 147,200); 
+
 }
 
 void mousePressed(){
